@@ -8,6 +8,7 @@ Created on Thu Oct  5 12:55:13 2017
 
 def _jaccard_similarity(s1, s2):
     # YOU NEED TO IMPLEMENT THIS
+    # Done
     return len(s1.intersection(s2)) / len(s1.union(s2))
 
 class Jaccard:
