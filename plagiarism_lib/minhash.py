@@ -71,6 +71,7 @@ def _make_minhash_sigmatrix(shingled_data, num_hashes, inverted=False):
     for s, docid in inv_index:
         ## IMPLEMENT THIS LOOP!!!
         ## DONE!!!
+        
         num_doc = docids.index(docid)
         if s == last_s:
             for h in range(num_hashes):
@@ -119,6 +120,7 @@ class MinHash:
         j = self._docids.index(dj)
         # FINISH IMPLEMENTING THIS!!!
         # DONE!!!
+        
         equalcount = 0
         for h in range (self._num_hashes):
             if self._mat[h][i] == self._mat[h][j]:
