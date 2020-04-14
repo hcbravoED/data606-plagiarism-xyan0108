@@ -69,11 +69,19 @@ def _make_minhash_sigmatrix(shingled_data, num_hashes, inverted=False):
     
     # iterate over shingles 
     for s, docid in inv_index:
-        
         ## IMPLEMENT THIS LOOP!!!
-        
+        ## DONE!!!
+        num_doc = docids.index(docid)
+        if s == last_s:
+            for h in range(num_hashes):
+                sigmat[h][num_doc] = min(sigmat[h][num_doc], hashvals[h])
+        else:
+            hashvals = []
+            for h in range(num_hashes):
+                hashvals.append(hash_funcs[h](s)) 
+            sigmat[h][num_doc] = min(sigmat[h][num_doc], hashvals[h])
+        last_s = s
     return sigmat, docids
-
 
 # Objects used to create and query minhash summaries
 # Example using 10 hash functions:
@@ -110,7 +118,14 @@ class MinHash:
         i = self._docids.index(di)
         j = self._docids.index(dj)
         # FINISH IMPLEMENTING THIS!!!
-        return 0.5
+        # DONE!!!
+        equalcount = 0
+        for h in range (self._num_hashes):
+            if self._mat[h][i] == self._mat[h][j]:
+                equalcount = equalcount + 1
+        
+        sigmatjs = equalcount/self._num_hashes    
+        return sigmatjs
     
     def save_matrix(self, file):
         np.save(file, self._mat)
