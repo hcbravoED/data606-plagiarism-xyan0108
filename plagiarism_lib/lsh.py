@@ -56,17 +56,14 @@ def _do_lsh(mh_matrix, threshold):
     # fill hash tables for each band
     for band in range(b):
         hashtable = defaultdict(list)
-        buckets = []
-        for d in range (ndocs):
-            start_row = band*r
-            end_row = min(start_row + r, n-1)
-            bucket_val = hash_func(mh_matrix._mat[start_row:end_row,d])
-            buckets.append((bucket_val, mh_matrix._docids[d]))
-            for k,v in buckets:
-                hashtable[k].append(v)                                             
-        hashtables.append(hashtable)
-    
-       # FINISH IMPLEMENTING THIS LOOP
+        start_row = band*r
+        end_row = min(start_row + r, n)
+        if start_row < n:
+            for d in range (ndocs):
+                bucket_val = hash_func(mh_matrix._mat[start_row:end_row,d])
+                hashtable[bucket_val].append(mh_matrix._docids[d])
+            hashtables.append(hashtable)
+                # FINISH IMPLEMENTING THIS LOOP
     return hashtables
         
 def _get_candidates(hashtables):
