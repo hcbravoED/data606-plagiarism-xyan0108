@@ -64,6 +64,7 @@ def _do_lsh(mh_matrix, threshold):
                 hashtable[bucket_val].append(mh_matrix._docids[d])
             hashtables.append(hashtable)
                 # FINISH IMPLEMENTING THIS LOOP
+                # DONE
     return hashtables
         
 def _get_candidates(hashtables):
